@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big O Notation</title>
+    <link rel="stylesheet" href="big.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .banner {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(images/bigOnotation.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .navbar ul li{
+            list-style: none;
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .navbar a{
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+        
+        }
+        
+        .navbar ul li::after{
+            content: '';
+            height: 3px;
+            width: 0;
+            background: wheat;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            transition: 0.5s;
+        }
+        
+        .navbar ul li:hover::after{
+            width: 100%;
+        }
+        .bigOcontent h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .actualcontent {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .leftcontent {
+            width: 65%;
+            float: left;
+        }
+
+        .container {
+            width: 35%;
+            float: right;
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .defcontainer {
+            padding-left: 20px;
+            padding-top: 20px;
+        }
+
+        .definition {
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .definition:hover {
+            transform: scale(1.05);
+        }
+
+        .definition h2 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .definition p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInAnimation 1s ease forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-text {
+            opacity: 0;
+            animation: fadeInText 2s ease;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .leftcontent, .container {
+                width: 100%;
+                padding: 0 15px;
+            }
+
+            .navbar ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar li {
+                margin: 10px 0;
+            }
+
+            .navbar a {
+                padding: 8px 20px;
+            }
+
+            .bigOcontent h1 {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="images/logo.png" alt="Logo" class="logo">
+            <ul>
+                <li><a href="intro.html">Home</a></li>
+                <li><a href="bigonotation.html">Big O notations</a></li>
+                <li><a href="algorithm.html">Algorithms</a></li>
+                <li><a href="sorting.html">Visualizer</a></li>
+            </ul>
+        </div>
+        <div class="bigOcontent">
+            <h1 class="fade-in">Big O Notation</h1>
+            <p class="fade-in">Understanding how algorithms scale with data size</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <section class="actualcontent">
+        <div class="row">
+            <div class="leftcontent">
+                <h2 class="fade-in">Big O Notation Model</h2>
+                <p class="fade-in">Big O notation is a way to describe how the runtime or space requirements of an algorithm change as the size of its input increases. It gives us a simple way to understand and compare the efficiency of algorithms.</p>
+                <br>
+                <p class="fade-in">Imagine you're cooking and following a recipe. Big O notation is like understanding how the amount of time it takes to cook a recipe changes based on the number of people you're cooking for. For example, does making a dish for 1 person take the same amount of time as making it for 10 people?</p>
+                <br>
+                <p class="fade-in">Let's break down some common Big O notations:</p>
+                <ul class="fade-in">
+                    <li><strong>O(1) - Constant Time:</strong> This is like doing a task that takes the same amount of time no matter how many things you're dealing with. For example, grabbing the first item from a perfectly organized list.</li>
+                    <li><strong>O(log n) - Logarithmic Time:</strong> Think of this as dividing a problem in half at each step. Like a game of "Guess the Number" where you always split the search range in half, making it efficient even for large sets of numbers.</li>
+                    <li><strong>O(n) - Linear Time:</strong> This grows proportionally with the size of the input. If you have to check each item in a list, the time it takes increases with the number of items.</li>
+                    <li><strong>O(n log n) - Log-Linear Time:</strong> This is a bit faster than linear but not as fast as constant or logarithmic time. It's like sorting a deck of cards where you divide and conquer, then merge together.</li>
+                    <li><strong>O(n^2) - Quadratic Time:</strong> This grows with the square of the input size. If you have nested loops going through a list (loop inside loop), it can take a while for larger lists.</li>
+                    <li><strong>O(2^n) - Exponential Time:</strong> This grows rapidly as the input increases. If you're dealing with every possible combination of something, the number of combinations explodes with the input size.</li>
+                    <li><strong>O(n!) - Factorial Time:</strong> This grows the fastest and becomes extremely slow with even moderate-sized inputs. It's like trying every possible arrangement of items, which quickly becomes impractical for large sets.</li>
+                </ul>
+                <br>
+                <p class="fade-in">Remember, Big O notation helps us understand how efficient an algorithm is, but it's just one part of the story. Real-world factors like hardware, optimizations, and specific details of the algorithm also play a role in performance.</p>
+            </div>
+            <div class="container">
+                <table class="fade-in">
+                    <thead>
+                        <tr>
+                            <th>Big O Notation</th>
+                            <th>Name</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>O(1)</td>
+                            <td>Constant Time</td>
+                            <td>Accessing an array index</td>
+                        </tr>
+                        <tr>
+                            <td>O(log n)</td>
+                            <td>Logarithmic</td>
+                            <td>Binary search</td>
+                        </tr>
+                        <tr>
+                            <td>O(n)</td>
+                            <td>Linear Time</td>
+                            <td>Finding an item in an array</td>
+                        </tr>
+                        <tr>
+                            <td>O(n log n)</td>
+                            <td>Log-Linear</td>
+                            <td>Merge sort</td>
+                        </tr>
+                        <tr>
+                            <td>O(n^2)</td>
+                            <td>Quadratic</td>
+                            <td>Nested loops</td>
+                        </tr>
+                        <tr>
+                            <td>O(2^n)</td>
+                            <td>Exponential</td>
+                            <td>Finding all subsets</td>
+                        </tr>
+                        <tr>
+                            <td>O(n!)</td>
+                            <td>Factorial</td>
+                            <td>Calculating permutations</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <img src="images/complexity.png" alt="Complexity" class="after-table fade-in">
+        <div class="leftside">
+            <h2 class="fade-in">Commonly Used Rates of Growth</h2>
+            <br>
+            <table class="fade-in">
+                <thead>
+                    <tr>
+                        <th>Time Complexity</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="fade-in definition">
+                        <td>O(1)</td>
+                        <td>Constant</td>
+                        <td>These are tasks that take the same amount of time no matter how many items you have. Like grabbing the first item from a list.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(log n)</td>
+                        <td>Logarithmic</td>
+                        <td>These are slower growing than even Linear functions. Think of dividing a problem in half at each step, like "Guess the Number" where you always split the search range in half.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(n)</td>
+                        <td>Linear</td>
+                        <td>These grow linearly with the input size. Checking each item in a list one by one is an example.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(n log n)</td>
+                        <td>Linear Logarithmic</td>
+                        <td>Faster growing than linear but slower than Quadratic. Think of sorting a deck of cards by dividing and merging.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(n^2)</td>
+                        <td>Quadratic</td>
+                        <td>These grow with the square of the input size. Nested loops going through a list is an example.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(2^n)</td>
+                        <td>Exponential</td>
+                        <td>These grow rapidly with the input. If you're dealing with every possible combination of something, the number of combinations explodes.</td>
+                    </tr>
+                    <tr class="fade-in definition">
+                        <td>O(n!)</td>
+                        <td>Factorial</td>
+                        <td>Fastest growing of all, quickly becoming impractical for large sets. Calculating all possible arrangements of items is an example.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <h2 class="fade-in">Definitions in Detail</h2>
+            <div class="defcontainer fade-in">
+                <div class="definition">
+                    <h2>O(1) - Constant Time</h2>
+                    <p><strong>Definition:</strong> This means the task takes the same amount of time no matter how much data you have. It's like grabbing the first item from a perfectly organized list where you know exactly where it is.</p>
+                    <p><strong>Example:</strong> Accessing an element in an array by its index. If you know the index (like the page number in a book), you can immediately jump to that location.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(log n) - Logarithmic Time</h2>
+                    <p><strong>Definition:</strong> These algorithms get faster as the data grows because they split the problem in half each time. It's like a game of "Guess the Number" where you divide the search range by half with each guess.</p>
+                    <p><strong>Example:</strong> Binary search in a sorted list. With each comparison, you eliminate half of the remaining possibilities, quickly narrowing down the search.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(n) - Linear Time</h2>
+                    <p><strong>Definition:</strong> The time it takes to complete the task grows linearly with the amount of data. If you have to check each item one by one, the time increases as the list grows.</p>
+                    <p><strong>Example:</strong> Finding an item in an unsorted list. You have to go through each item until you find the one you're looking for.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(n log n) - Log-Linear Time</h2>
+                    <p><strong>Definition:</strong> These algorithms are a bit faster than linear but not as fast as constant or logarithmic time. They're like efficient ways of sorting data, using divide-and-conquer strategies.</p>
+                    <p><strong>Example:</strong> Merge Sort. It divides the list into smaller parts, sorts them individually, and then merges them back together.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(n^2) - Quadratic Time</h2>
+                    <p><strong>Definition:</strong> The time it takes is proportional to the square of the data size. When you have nested loops going through data, the time grows quickly.</p>
+                    <p><strong>Example:</strong> Bubble Sort. It compares every pair of elements in a list and swaps them if they're in the wrong order, repeating this process until the list is sorted.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(2^n) - Exponential Time</h2>
+                    <p><strong>Definition:</strong> These algorithms grow rapidly with more data, making them inefficient for large datasets. They're like exploring every possible combination of something.</p>
+                    <p><strong>Example:</strong> Finding all subsets of a set. For each element in the set, you have two choices (either include it or not), leading to an exponential number of subsets.</p>
+                </div>
+                <br>
+                <div class="definition">
+                    <h2>O(n!) - Factorial Time</h2>
+                    <p><strong>Definition:</strong> The slowest growing of all, becoming impractical even for moderate-sized data. These are tasks that involve calculating every possible arrangement of something.</p>
+                    <p><strong>Example:</strong> Calculating permutations of a set. For each element, you have fewer and fewer choices, leading to n * (n-1) * (n-2) * ... * 1 possible arrangements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Trigger fade-in animations
+        window.addEventListener('DOMContentLoaded', () => {
+            const fadeIns = document.querySelectorAll('.fade-in');
+            fadeIns.forEach((element, index) => {
+                element.style.animation = `fadeInAnimation 1s ease ${index / 5}s forwards`;
+            });
+        });
+    </script>
+</body>
+</html>
