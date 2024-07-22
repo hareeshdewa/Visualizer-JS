@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithm Visualizer</title>
+    <link rel="stylesheet" href="../Visualizer-JS-main/css/intro.css">
+</head>
+<body>
+    <div class="banner">
+        <div class="navbar">
+            <img src="images/logo.png" class="logo">
+            <ul>
+                <li><a href="intro.html">Home</a></li>
+                <li><a href="bigonotation.html">Big O notation</a></li>
+                <li><a href="algorithms.html">Algorithms</a></li>
+                <li><a href="sorting.html">Visualizer</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>Sorting Algorithm Visualizer</h1>
+            <p>In this endeavor, we embark on an exploration of the fascinating world of sorting algorithms, brought to life through interactive visualizations right here on our WordPress platform. Our goal is to delve into the inner workings of various sorting algorithms, understanding their mechanisms, and observing how they efficiently arrange data.</p>
+        </div>
+    </div>
+   
+   
+<!-- Abstract -->
+<div class="container">
+    <div class="content-aboutus">
+        <h1>Abstract:</h1>
+        <p>Welcome to Sorting Algorithm Visualizer, your go-to resource for exploring and understanding sorting algorithms through interactive visualizations. Our platform is dedicated to providing a comprehensive learning experience for beginners and professionals alike, aiming to demystify the complexities of sorting algorithms and their applications.</p>
+        <a href="https://en.wikipedia.org/wiki/Sorting_algorithm"><button id="contentmake" class="contentBtn">Read More</button></a>
+    </div>
+    <div class="image">
+        <img src="../Visualizer-JS-main/images/code.jpg">
+    </div>
+</div>
+<!-- Primary -->
+<section class="primary">
+    <h1>Primary Goal</h1>
+    <p>The primary goal of this project is to provide a comprehensive platform for understanding and visualizing sorting algorithms. Through interactive visualizations, educational content, and performance analysis tools, our project aims to make sorting algorithms accessible and engaging for learners of all levels. By empowering users to explore and experiment with various sorting techniques, our project seeks to enhance understanding and proficiency in algorithmic concepts, ultimately fostering a deeper appreciation for computer science and software development.</p>
+    <div class="primary_column">
+        <div class="image_primary">
+            <img src="../Visualizer-JS-main/images/Algorithm.png">
+            <div class="layer">
+                <h3>Algorithm</h3>
+            </div>
+        </div>
+        <div class="image_primary">
+            <img src="images/bigOnotation.png">
+            <div class="layer">
+                <h3>Big O Notation</h3>
+            </div>
+        </div>
+        <div class="image_primary">
+            <img src="images/visualize.png">
+            <div class="layer">
+                <h3>Visualizer</h3>
+            </div>
+        </div>
+    </div>
+</section>  
+
+
+
+    <!-- Service -->
+    <section class="service">
+        <h1>Services:</h1>
+        <p>These services collectively aim to provide users with a comprehensive learning and exploration platform for sorting algorithms, empowering them to deepen their understanding, make informed decisions, and engage with a thriving community of algorithm enthusiasts.</p>
+        <div class="row">
+            <div class="service-col">
+                <h3>Algorithm Complexity Analysis:</h3>
+                <p>Our website simplifies the understanding of sorting algorithm complexities. We break down the time and space requirements of each algorithm, helping users grasp how efficient and scalable they are. By explaining complexities in plain language and providing visual aids, users can easily compare algorithms and choose the best one for their needs. Whether you're a beginner learning about sorting or a developer optimizing performance, our analysis tools make complexity easy to understand and apply.</p>
+            </div>
+            <div class="service-col">
+                <h3>Interactive Sorting Algorithm Demonstrations:</h3>
+                <p>Our website offers dynamic visualizations of popular sorting algorithms, allowing users to observe how algorithms rearrange data in real-time. Through interactive demonstrations, users gain a deeper understanding of algorithmic concepts and behaviors, fostering an engaging learning experience. Whether it's Bubble Sort, Quick Sort, or Merge Sort, users can explore each algorithm's step-by-step operation and witness its efficiency firsthand.</p>
+            </div>
+            <div class="service-col">
+                <h3>Educational Content:</h3>
+                <p>In addition to visualizations, our website provides comprehensive educational resources on sorting algorithms. From detailed algorithm explanations to practical examples and case studies, users can access a wealth of information to deepen their understanding. Whether you're a student learning algorithms for the first time or a seasoned developer looking to refresh your knowledge, our educational content caters to learners of all levels.</p>
+            </div>
+        </div>
+    </section>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;  
+        }
+        
+        .banner{
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)), url(images/intro.jpg);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+        }
+        
+        .navbar{
+            width: 85%;
+            margin: auto;
+            padding: 35px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo{
+            width: 120px;
+            cursor: pointer;
+        }
+        .navbar ul li {
+            list-style: none;
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .navbar a{
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative; /* Add this line */
+        }
+        
+        .navbar a::after {
+            content: '';
+            height: 3px;
+            width: 0;
+            background: lightseagreen;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            transition: width 0.3s ease; 
+        }
+        
+        .navbar a:hover::after {
+            width: 100%;
+        }
+        
+        
+        .content{
+            width:90%;
+            color:#fff;
+            position: absolute;
+            top: 30%;
+            left:5%;
+            animation: fadeIn 2s ease;
+            text-align: center;
+        
+        }
+                
+        .content h1{
+            font-size: 70px;
+            margin-top: 80px;
+        }
+                
+        .content p{
+            margin: 20px auto;
+            width: 50%;
+            font-weight: 100;
+            line-height: 25px;
+        }
+            
+        /*About us */
+        .hero{
+            background-color: #f8f8f8;
+            overflow: hidden;
+        }
+        
+        .heading h1{
+            font-family: 'Georgia', serif;
+            color: #ff6347;
+            font-size: 55px;
+            text-align: center;
+            margin-top: 35px;
+        }
+        
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 90%;
+            margin:65px auto;
+        }
+        
+        
+        .content-aboutus{
+            flex: 1;
+            width: 600px;
+            margin: 0px 25px;
+            animation: fadeIn 2s ease;
+        }
+        
+        @keyframes fadeIn{
+            0%{
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes fadeRight{
+            0%{
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+        
+        
+        .content-aboutus p{
+            font-family: 'Georgia', serif;
+            font-size: 24px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            color: #666;
+        
+        }
+        
+        
+        .image{
+            flex: 1;
+            width: 600px;
+            margin: auto;
+            animation: fadeRight 2s ease;
+        }
+        
+        img{
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        
+        }
+        
+        .content-aboutus button{
+            display: inline-block;
+            background-color: #ff4500;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        
+        
+        .content-aboutus button:hover{
+            background-color: #ff6347;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn{
+            0%{
+                opacity: 0;
+                transform: translate(-50px);
+            }
+            100%{
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+        /* Primary */
+        .primary {
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding-top: 100px;
+        }
+        
+        .primary h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333; /* Dark grey color */
+        }
+        
+        .primary p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        
+        .primary_column {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .image_primary {
+            text-align: center;
+            width: 30%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            position: relative; /* Add relative positioning */
+        }
+        
+        .image_primary:hover {
+            transform: scale(1.1);
+        }
+        
+        .image_primary img {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Layer*/
+        .layer {
+            background-color: transparent;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: 0.5s;
+        }
+        
+        .layer:hover {
+            background-color: rgba(226, 0, 0, 0.7); /* Adjust the color format */
+        }
+        
+        .layer h3 {
+            width: 100%;
+            font-weight: 500;
+            color: #fff;
+            font-size: 26px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            position: absolute;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        
+        .layer:hover h3 {
+            bottom: 49%;
+            opacity: 1;
+        }
+        /* service */
+                
+                .service {
+                    background-color: rgba(255, 255, 255, 0.8);
+                    width: 80%;
+                    margin: auto;
+                    text-align: center;
+                    padding-top: 100px;
+                    
+                }
+        
+                .service h1 {
+                    font-family: 'Georgia', serif;
+                    margin-bottom: 30px;
+                    font-size: 36px;
+                    font-weight: 700;
+                    color: #333;
+                }
+        
+                .service p {
+                    font-family: 'Georgia', serif;
+                    color: #666;
+                    font-size: 18px;
+                    margin-bottom: 30px;
+                }
+        
+                .row {
+                    margin: 5%;
+                    display: flex;
+                    justify-content: space-between;
+                }
+        
+                .service-col {
+                    flex-basis: calc(33.33% - 20px);
+                    background-color: #fff;
+                    border-radius: 10px;
+                    padding: 30px;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                    transition: all 0.3s ease;
+                    margin-bottom: 30px;
+                }
+        
+                .service-col:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+                }
+        
+                .service-col h3 {
+                    color: #333;
+                    font-size: 24px;
+                    text-align: center;
+                    font-weight: 600;
+                    margin: 10px 5px;
+                }
+        
+                .service-col p {
+                    color: #666;
+                    font-size: 16px;
+                    line-height: 1.6;
+                }
+        
+    </style>
+
+ </body>
+</html>
